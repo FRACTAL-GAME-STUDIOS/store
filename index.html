@@ -9,7 +9,7 @@
             integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
         <link rel="stylesheet" href="style.css">
-        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+        <link rel="icon" type="image/x-icon" href="./imassetsages/favicon.ico">
     
         <!-- META -->
         <meta name="description" content="Fractal Game Studios es una desarrolladora independiente especializada en la creación de mods y servidores para videojuegos. Ofrecemos soluciones de desarrollo de alta calidad para la comunidad de jugadores.">
@@ -19,7 +19,133 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="canonical" href="https://fractalgamestudios.com/">
     </head>
-    <body style="overflow: hidden;">
-        <iframe src="https://oxy3n-studio.tebex.io" frameborder="0" style="width: 100vw; height: 100vh"></iframe>
+    <body style="overflow: hidden; background-color: black;">
+        <div class="loader">
+            <img src="assets/enblanco.svg" alt="logo fractal">
+            <figure class='spinner'>
+                <div class="spinner-container" id="item-1">
+                    <div class="spinner-element"></div>
+                </div>
+                <div class="spinner-container" id="item-2">
+                    <div class="spinner-element"></div>
+                </div>
+                <div class="spinner-container" id="item-3">
+                    <div class="spinner-element"></div>
+                </div>
+                <div class="spinner-container" id="item-4">
+                    <div class="spinner-element"></div>
+                </div>
+                <div class="spinner-container" id="item-5">
+                    <div class="spinner-element"></div>
+                </div>
+                <div class="spinner-container" id="item-6">
+                    <div class="spinner-element"></div>
+                </div>
+            </figure>
+        </div>
     </body>
+
+    <script>
+        let base_URL = 'https://oxy3n-studio.tebex.io'
+        const routes = [
+            { path: 'prepared_food',        redirect: '5223024' },
+            { path: 'black_ops_zombies',    redirect: '2173265' },
+            { path: 'business_zombies',     redirect: '5228456' },
+            { path: 'runner_zombies',       redirect: '5304162' },
+            { path: 'melee_pack_2',         redirect: '5303147' },
+            { path: 'melee_pack_1',         redirect: '5300568' },
+            { path: 'can_food',             redirect: '5228404' },
+            { path: 'fresh_food_2',         redirect: '5249517' },
+            { path: 'fresh_food',           redirect: '5233349' },
+            { path: 'sushi_pack',           redirect: '5551413' },
+            { path: 'drinks_pack',          redirect: '5382118' },
+            { path: 'liquour_pack',         redirect: '5322829' },
+            { path: 'desert_pack',          redirect: '5283858' },
+            { path: 'fast_food',            redirect: '5272795' },
+            { path: 'rf_scanners',          redirect: '5378511' },
+            { path: 'recyclers',            redirect: '5264029' },
+            { path: 'nails_pack',           redirect: '5855095' },
+            { path: 'retexture_dayz',       redirect: '5937423' },
+         // { path: '',                     redirect: '' },
+         // { path: '',                     redirect: '' },
+         // { path: '',                     redirect: '' },
+         // { path: '',                     redirect: '' },
+         // { path: '',                     redirect: '' },
+         // { path: '',                     redirect: '' },
+         // { path: '',                     redirect: '' },
+         // { path: '',                     redirect: '' },
+         // { path: '',                     redirect: '' },
+         // { path: '',                     redirect: '' },
+         // { path: '',                     redirect: '' },
+        ]
+
+        /*
+            // Generame todas las posibles rutas
+            https://store.fractalgamestudios.es/?pack=prepared_food
+            https://store.fractalgamestudios.es/?pack=black_ops_zombies
+            https://store.fractalgamestudios.es/?pack=business_zombies
+            https://store.fractalgamestudios.es/?pack=runner_zombies
+            https://store.fractalgamestudios.es/?pack=melee_pack_2
+            https://store.fractalgamestudios.es/?pack=melee_pack_1
+            https://store.fractalgamestudios.es/?pack=can_food
+            https://store.fractalgamestudios.es/?pack=fresh_food_2
+            https://store.fractalgamestudios.es/?pack=fresh_food
+            https://store.fractalgamestudios.es/?pack=sushi_pack
+            https://store.fractalgamestudios.es/?pack=drinks_pack
+            https://store.fractalgamestudios.es/?pack=liquour_pack
+            https://store.fractalgamestudios.es/?pack=desert_pack
+            https://store.fractalgamestudios.es/?pack=fast_food
+            https://store.fractalgamestudios.es/?pack=rf_scanners
+            https://store.fractalgamestudios.es/?pack=recyclers
+            https://store.fractalgamestudios.es/?pack=nails_pack
+            https://store.fractalgamestudios.es/?pack=retexture_dayz
+
+            // Generame todas las posibles rutas
+            https://store.fractalgamestudios.es/prepared_food
+            https://store.fractalgamestudios.es/black_ops_zombies
+            https://store.fractalgamestudios.es/business_zombies
+            https://store.fractalgamestudios.es/runner_zombies
+            https://store.fractalgamestudios.es/melee_pack_1
+            https://store.fractalgamestudios.es/melee_pack_2
+            https://store.fractalgamestudios.es/can_food
+            https://store.fractalgamestudios.es/fresh_food
+            https://store.fractalgamestudios.es/fresh_food_2
+            https://store.fractalgamestudios.es/sushi_pack
+            https://store.fractalgamestudios.es/drinks_pack
+            https://store.fractalgamestudios.es/liquour_pack
+            https://store.fractalgamestudios.es/desert_pack
+            https://store.fractalgamestudios.es/fast_food
+            https://store.fractalgamestudios.es/rf_scanners
+            https://store.fractalgamestudios.es/recyclers
+            https://store.fractalgamestudios.es/nails_pack
+            https://store.fractalgamestudios.es/retexture_dayz
+        */
+
+
+        const redirect = (path) => {
+            const route = routes.find(route => route.path === path)
+            if (route) {
+                window.location.href = base_URL + '/package/' + route.redirect
+            }
+        }
+
+        window.onload = () => {
+            setTimeout(() => {
+                const urlParams = new URLSearchParams(window.location.search);
+                const pack = urlParams.get('pack');
+                
+                if (pack) {
+                    redirect(pack);
+                } else {
+                    const path = window.location.pathname.split('/')[1];
+                    if (path) {
+                        redirect(path);
+                    } else {
+                        window.location.href = base_URL;
+                    }
+                }
+            }, 5000);
+        };
+
+    </script>
 </html>
