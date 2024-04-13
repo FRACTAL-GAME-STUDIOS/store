@@ -14,7 +14,7 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    width: 50px;
+    width: 33px;
     animation: hideLogo 2s cubic-bezier(0.165, 0.84, 0.44, 1) infinite;
 }
 .spinner-container {
