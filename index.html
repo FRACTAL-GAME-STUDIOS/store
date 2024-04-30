@@ -59,14 +59,14 @@
             { path: 'fresh_food',           redirect: '5233349' },
             { path: 'sushi_pack',           redirect: '5551413' },
             { path: 'drinks_pack',          redirect: '5382118' },
-            { path: 'liquor_pack',         redirect: '5322829' },
+            { path: 'liquor_pack',          redirect: '5322829' },
             { path: 'desert_pack',          redirect: '5283858' },
             { path: 'fast_food',            redirect: '5272795' },
             { path: 'rf_scanners',          redirect: '5378511' },
             { path: 'recyclers',            redirect: '5264029' },
             { path: 'nails_pack',           redirect: '5855095' },
             { path: 'retexture_dayz',       redirect: '5937423' },
-            { path: 'discord',              link: '' },
+            { path: 'discord',              link: 'https://discord.com/invite/v7h3PnssaS' },
             { path: '',                     redirect: '' },
             { path: '',                     redirect: '' },
             { path: '',                     redirect: '' },
@@ -82,7 +82,6 @@
         const redirect = (path) => {
             const route = routes.find(route => route.path === path)
             if (route) {
-                if (route.link != '') window.location.href = route.link;
                 window.location.href = base_URL + '/package/' + route.redirect;
             }
         }
@@ -91,15 +90,19 @@
             setTimeout(() => {
                 const urlParams = new URLSearchParams(window.location.search);
                 const pack = urlParams.get('pack');
-                
-                if (pack) {
-                    redirect(pack);
+                const link = urlParams.get('link');
+                if (link) {
+                    window.location.href = routes.find(route => route.path === link).link;
                 } else {
-                    const path = window.location.pathname.split('/')[1];
-                    if (path) {
-                        redirect(path);
+                    if (pack) {
+                        redirect(pack);
                     } else {
-                        window.location.href = base_URL;
+                        const path = window.location.pathname.split('/')[1];
+                        if (path) {
+                            redirect(path);
+                        } else {
+                            window.location.href = base_URL;
+                        }
                     }
                 }
             }, 3000);
